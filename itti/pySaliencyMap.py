@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from itti import pySaliencyMapDefs
-
+import matplotlib.pyplot as plt
 class pySaliencyMap:
 
 
@@ -325,12 +325,167 @@ class pySaliencyMap:
         my_list.append(self.promedio(datos11, 11))
         my_list.append(self.promedio(datos12, 12))
 
-        StrA = "--".join([str(_) for _ in my_list])
+        StrA = "-".join([str(_) for _ in my_list])
         
         return StrA
 
+    def segmetacionAbajo(self, matriz): 
+        t1size = matriz.shape
+        print(t1size)
+
+        t1_columnas  = t1size[1] 
+        t1_filas = t1size[0] 
+
+        t1_filas_bordes = int(t1_filas/5) #4
+        t1_columnas_bordes = int(t1_columnas/2) #3
+
+        datos1 = self.SM[0:t1_filas_bordes,0:t1_columnas_bordes]
+        datos2 = self.SM[0:t1_filas_bordes,t1_columnas_bordes:2*t1_columnas_bordes]
+
+        datos3 = self.SM[t1_filas_bordes:2*t1_filas_bordes,0:t1_columnas_bordes]
+        datos4 = self.SM[t1_filas_bordes:2*t1_filas_bordes,t1_columnas_bordes:2*t1_columnas_bordes]
+
+        datos5 = self.SM[2*t1_filas_bordes:3*t1_filas_bordes,0:t1_columnas_bordes]
+        datos6 = self.SM[2*t1_filas_bordes:3*t1_filas_bordes,t1_columnas_bordes:2*t1_columnas_bordes]
+
+        datos7 = self.SM[3*t1_filas_bordes:4*t1_filas_bordes,0:t1_columnas_bordes]
+        datos8 = self.SM[3*t1_filas_bordes:4*t1_filas_bordes,t1_columnas_bordes:2*t1_columnas_bordes]
+
+        datos9 = self.SM[4*t1_filas_bordes:5*t1_filas_bordes,0:t1_columnas_bordes]
+        datos10 = self.SM[4*t1_filas_bordes:5*t1_filas_bordes,t1_columnas_bordes:2*t1_columnas_bordes]
+
+        my_list = []
+        my_list.append(self.promedio(datos1, 1))
+        my_list.append(self.promedio(datos2, 2))
+        my_list.append(self.promedio(datos3, 3))
+        my_list.append(self.promedio(datos4, 4))
+        my_list.append(self.promedio(datos5, 5))
+        my_list.append(self.promedio(datos6, 6))
+        my_list.append(self.promedio(datos7, 7))
+        my_list.append(self.promedio(datos8, 8))
+        my_list.append(self.promedio(datos9, 9))
+        my_list.append(self.promedio(datos10, 10))
+
+        StrAbajo = "--".join([str(_) for _ in my_list])
+
+        return StrAbajo
+
+    
+    def segmetacionFull(self, matriz):    
+        t1size = matriz.shape
+        print(t1size)
+
+        t1_columnas  = t1size[1] 
+        t1_filas = t1size[0] 
+
+        t1_filas_arriba = int(t1_filas/8) #5 f1
+        t1_columnas_arriba = int(t1_columnas/3) #2 c1
+
+        t1_filas_abajo = int(t1_filas/10) #4 f2
+        t1_columnas_abajo = int(t1_columnas/2) #3 c2
+
+        datos1 = self.SM[0:t1_filas_arriba,0:t1_columnas_arriba]
+        datos2 = self.SM[0:t1_filas_arriba,t1_columnas_arriba:2*t1_columnas_arriba]
+        datos3 = self.SM[0:t1_filas_arriba,2*t1_columnas_arriba:3*t1_columnas_arriba]
+
+        datos4 = self.SM[t1_filas_arriba:2*t1_filas_arriba,0:t1_columnas_arriba]
+        datos5 = self.SM[t1_filas_arriba:2*t1_filas_arriba,t1_columnas_arriba:2*t1_columnas_arriba]
+        datos6 = self.SM[t1_filas_arriba:2*t1_filas_arriba,2*t1_columnas_arriba:3*t1_columnas_arriba]
+
+        datos7 = self.SM[2*t1_filas_arriba:3*t1_filas_arriba,0:t1_columnas_arriba]
+        datos8 = self.SM[2*t1_filas_arriba:3*t1_filas_arriba,t1_columnas_arriba:2*t1_columnas_arriba]
+        datos9 = self.SM[2*t1_filas_arriba:3*t1_filas_arriba,2*t1_columnas_arriba:3*t1_columnas_arriba]
+
+        datos10 = self.SM[3*t1_filas_arriba:4*t1_filas_arriba,0:t1_columnas_arriba]
+        datos11 = self.SM[3*t1_filas_arriba:4*t1_filas_arriba,t1_columnas_arriba:2*t1_columnas_arriba]
+        datos12 = self.SM[3*t1_filas_arriba:4*t1_filas_arriba,2*t1_columnas_arriba:3*t1_columnas_arriba]
+
+
+        datos13 = self.SM[4*t1_filas_arriba:6*t1_filas_abajo,0:t1_columnas_abajo]
+        datos14 = self.SM[4*t1_filas_arriba:6*t1_filas_abajo,t1_columnas_abajo:2*t1_columnas_abajo]
+
+        datos15 = self.SM[6*t1_filas_abajo:7*t1_filas_abajo,0:t1_columnas_abajo]
+        datos16 = self.SM[6*t1_filas_abajo:7*t1_filas_abajo,t1_columnas_abajo:2*t1_columnas_abajo]
+
+        datos17 = self.SM[7*t1_filas_abajo:8*t1_filas_abajo,0:t1_columnas_abajo]
+        datos18 = self.SM[7*t1_filas_abajo:8*t1_filas_abajo,t1_columnas_abajo:2*t1_columnas_abajo]
+
+        datos19 = self.SM[8*t1_filas_abajo:9*t1_filas_abajo,0:t1_columnas_abajo]
+        datos20 = self.SM[8*t1_filas_abajo:9*t1_filas_abajo,t1_columnas_abajo:2*t1_columnas_abajo]
+
+        datos21 = self.SM[9*t1_filas_abajo:10*t1_filas_abajo,0:t1_columnas_abajo]
+        datos22 = self.SM[9*t1_filas_abajo:10*t1_filas_abajo,t1_columnas_abajo:2*t1_columnas_abajo]
+
+        my_list = []
+        my_list.append(self.promedio(datos1, 1))
+        my_list.append(self.promedio(datos2, 2))
+        my_list.append(self.promedio(datos3, 3))
+        my_list.append(self.promedio(datos4, 4))
+        my_list.append(self.promedio(datos5, 5))
+        my_list.append(self.promedio(datos6, 6))
+        my_list.append(self.promedio(datos7, 7))
+        my_list.append(self.promedio(datos8, 8))
+        my_list.append(self.promedio(datos9, 9))
+        my_list.append(self.promedio(datos10, 10))
+        my_list.append(self.promedio(datos11, 11))
+        my_list.append(self.promedio(datos12, 12))
+
+        my_list.append(self.promedio(datos13, 13))
+        my_list.append(self.promedio(datos14, 14))
+        my_list.append(self.promedio(datos15, 15))
+        my_list.append(self.promedio(datos16, 16))
+        my_list.append(self.promedio(datos17, 17))
+        my_list.append(self.promedio(datos18, 18))
+        my_list.append(self.promedio(datos19, 19))
+        my_list.append(self.promedio(datos20, 20))
+        my_list.append(self.promedio(datos21, 21))
+        my_list.append(self.promedio(datos22, 22))
+
+
+        StrFull = "-".join([str(_) for _ in my_list])
+
+        return StrFull
+
+
     # core
-    def SMGetSM(self, src):
+    def SMGetSM_Arriba(self, src):
+        # definitions
+        size = src.shape
+        width  = size[1]
+        height = size[0]
+
+        # extracting individual color channels
+        R, G, B, I = self.SMExtractRGBI(src)
+
+        # extracting feature maps
+        IFM = self.IFMGetFM(I)
+        CFM_RG, CFM_BY = self.CFMGetFM(R, G, B)
+        OFM = self.OFMGetFM(I)
+        MFM_X, MFM_Y = self.MFMGetFM(I)
+
+        # extracting conspicuity maps
+        ICM = self.ICMGetCM(IFM)
+        CCM = self.CCMGetCM(CFM_RG, CFM_BY)
+        OCM = self.OCMGetCM(OFM)
+        MCM = self.MCMGetCM(MFM_X, MFM_Y)
+
+        # adding all the conspicuity maps to form a saliency map
+        wi = pySaliencyMapDefs.weight_intensity
+        wc = pySaliencyMapDefs.weight_color
+        wo = pySaliencyMapDefs.weight_orientation
+        SMMat = wi*ICM + wc*CCM + wo*OCM
+
+        normalizedSM = self.SMRangeNormalize(SMMat)
+        normalizedSM2 = normalizedSM.astype(np.float32)
+        smoothedSM = cv2.bilateralFilter(normalizedSM2, 7, 3, 1.55)
+        self.SM = cv2.resize(smoothedSM, (width,height), interpolation=cv2.INTER_NEAREST)
+
+        segmentacion = self.segmetacion(self.SM)
+
+        # return
+        return segmentacion
+
+    def SMGetSM_Abajo(self, src):
         # definitions
         size = src.shape
         width  = size[1]
@@ -358,8 +513,9 @@ class pySaliencyMap:
         wi = pySaliencyMapDefs.weight_intensity
         wc = pySaliencyMapDefs.weight_color
         wo = pySaliencyMapDefs.weight_orientation
-        wm = pySaliencyMapDefs.weight_motion
-        SMMat = wi*ICM + wc*CCM + wo*OCM + wm*MCM
+        #wm = pySaliencyMapDefs.weight_motion
+        #SMMat = wi*ICM + wc*CCM + wo*OCM + wm*MCM
+        SMMat = wi*ICM + wc*CCM + wo*OCM
 
         normalizedSM = self.SMRangeNormalize(SMMat)
 
@@ -370,7 +526,7 @@ class pySaliencyMap:
         self.SM = cv2.resize(smoothedSM, (width,height), interpolation=cv2.INTER_NEAREST)
         
 
-        segmentacion = self.segmetacion(self.SM)
+        segmentacion = self.segmetacionAbajo(self.SM)
         print("########################")
         print("segmentacion", segmentacion)
         print("########################")
@@ -378,6 +534,52 @@ class pySaliencyMap:
         # return
         return segmentacion
 
+    def SMGetSM_Full(self, src):
+        # definitions
+        size = src.shape
+        width  = size[1]
+        height = size[0]
+        # check
+#        if(width != self.width or height != self.height):
+#            sys.exit("size mismatch")
 
+        # extracting individual color channels
+        R, G, B, I = self.SMExtractRGBI(src)
 
+        # extracting feature maps
+        IFM = self.IFMGetFM(I)
+        CFM_RG, CFM_BY = self.CFMGetFM(R, G, B)
+        OFM = self.OFMGetFM(I)
+        MFM_X, MFM_Y = self.MFMGetFM(I)
+
+        # extracting conspicuity maps
+        ICM = self.ICMGetCM(IFM)
+        CCM = self.CCMGetCM(CFM_RG, CFM_BY)
+        OCM = self.OCMGetCM(OFM)
+        MCM = self.MCMGetCM(MFM_X, MFM_Y)
+
+        # adding all the conspicuity maps to form a saliency map
+        wi = pySaliencyMapDefs.weight_intensity
+        wc = pySaliencyMapDefs.weight_color
+        wo = pySaliencyMapDefs.weight_orientation
+        #wm = pySaliencyMapDefs.weight_motion
+        #SMMat = wi*ICM + wc*CCM + wo*OCM + wm*MCM
+        SMMat = wi*ICM + wc*CCM + wo*OCM
+
+        normalizedSM = self.SMRangeNormalize(SMMat)
+
+        normalizedSM2 = normalizedSM.astype(np.float32)
+
+        smoothedSM = cv2.bilateralFilter(normalizedSM2, 7, 3, 1.55)
+
+        self.SM = cv2.resize(smoothedSM, (width,height), interpolation=cv2.INTER_NEAREST)
+        
+
+        segmentacion = self.segmetacionFull(self.SM)
+        print("########################")
+        print("segmentacion", segmentacion)
+        print("########################")
+
+        # return
+        return segmentacion
 

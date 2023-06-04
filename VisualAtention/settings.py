@@ -94,15 +94,27 @@ WSGI_APPLICATION = 'VisualAtention.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "djongo",
+#         "NAME": "Tienda_Virtual_Clothes",
+#         "ENFORCE_SCHEMA": False,
+#         "CLIENT": {
+#             "host": 'mongodb+srv://db_user_platzivideos:V71858727NEM@cluster0.rdb3q.mongodb.net/Tienda_Virtual_Clothes?retryWrites=true&w=majority',
+#         },
+#     }
+# }
+
 DATABASES = {
-"default": {
-    "ENGINE": "djongo",
-    "NAME": "itti-db",
-    "ENFORCE_SCHEMA": False,
-    "CLIENT": {
-        "host": 'mongodb+srv://db_user_platzi:qgRE8jBkeuEoOq0T@cluster0.cjdm0.mongodb.net/itti-db?retryWrites=true&w=majority',
-    },
-}}
+    "default": {
+        "ENGINE": "djongo",
+        "NAME": "Tienda_Virtual_Clothes",
+        "ENFORCE_SCHEMA": False,
+        "CLIENT": {
+            "host": 'mongodb+srv://db_user_platzivideos:V71858727NEM@cluster0.rdb3q.mongodb.net/Tienda_Virtual_Clothes?retryWrites=true&w=majority',
+        },
+    }
+}
 
 
 # CORS_ORIGIN_WHITELIST = (
