@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 from itti import pySaliencyMapDefs
-import matplotlib.pyplot as plt
 class pySaliencyMap:
 
 

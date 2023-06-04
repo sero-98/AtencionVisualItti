@@ -12,8 +12,6 @@ from itti.pySaliencyMap import pySaliencyMap
 import urllib.request
 import numpy as np
 from PIL import Image, ImageChops 
-import matplotlib.pyplot as plt
-
 
 # Create your views here.
 
